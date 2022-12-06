@@ -1,6 +1,7 @@
 import {
   Component,
   Injector,
+  OnInit,
   VERSION,
   ViewChild,
   ViewContainerRef,
@@ -14,7 +15,7 @@ import { PROFILE_DATA } from './injection-tokens/profile.injection-token';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   name = 'Angular ' + VERSION.major;
   @ViewChild(ExpandableRowDirective, { static: true, read: ViewContainerRef })
   container!: ViewContainerRef;
@@ -23,6 +24,10 @@ export class AppComponent {
     name: 'Júnior',
     age: 26,
   };
+
+  ngOnInit() {
+    console.log(this.container);
+  }
 
   createComponent() {
     const injector: Injector = Injector.create({
